@@ -18,11 +18,6 @@ dev_up:
 	@docker compose \
 		-f ./deployments/development/docker-compose.yml \
 		--env-file ./deployments/development/.env \
-		build --no-cache
-
-	@docker compose \
-		-f ./deployments/development/docker-compose.yml \
-		--env-file ./deployments/development/.env \
 		up
 
 dev_down:

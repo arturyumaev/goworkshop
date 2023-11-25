@@ -8,5 +8,7 @@ services:
       dockerfile: deployments/development/Dockerfile
     ports:
       - 8081:${APPLICATION_PORT}
+    volumes: # CompileDaemon doesn't work without it
+      - ../../:/app
     env_file:
       - .env
