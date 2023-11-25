@@ -9,6 +9,4 @@ services:
     ports:
       - 8081:${APPLICATION_PORT}
     env_file:
-      - .env.example
-    environment:
-      - LDFLAGS=${LDFLAGS}
+      - .env

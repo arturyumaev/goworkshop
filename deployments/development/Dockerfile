@@ -11,8 +11,8 @@ COPY . .
 EXPOSE ${APPLICATION_PORT}
 
 CMD CompileDaemon \
-  -build="go build -ldflags='${LDFLAGS}' -o ./bin/api ./cmd/api/main.go" \
-  -command='./bin/api' \
-  -exclude-dir='.git' \
+  -build="go build -o ./bin/api ./cmd/api/main.go" \
+  -command="./bin/api" \
+  -exclude-dir=".git" \
   -color \
   -log-prefix=false
