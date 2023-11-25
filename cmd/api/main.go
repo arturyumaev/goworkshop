@@ -13,7 +13,7 @@ var (
 
 func main() {
 	fmt.Printf(
-		"commitHash: %s\nbranchName: %s\nuser_email: %s\n",
+		"commitHash: %s\nbranchName: %s\nuserEmail: %s\n",
 		commitHash,
 		branchName,
 		info.UserEmail,

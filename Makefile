@@ -18,9 +18,9 @@ dev_up:
 	@docker compose \
 		-f ./deployments/development/docker-compose.yml \
 		--env-file ./deployments/development/.env \
-		build
+		build --no-cache
 
-	@LDFLAGS="$(LDFLAGS)" docker compose \
+	@docker compose \
 		-f ./deployments/development/docker-compose.yml \
 		--env-file ./deployments/development/.env \
 		up

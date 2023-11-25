@@ -10,9 +10,9 @@ COPY . .
 
 EXPOSE ${APPLICATION_PORT}
 
-CMD CompileDaemon \
-  -build="go build -o ./bin/api ./cmd/api/main.go" \
-  -command="./bin/api" \
+CMD git config user.email; CompileDaemon \
+  -build="make build_api" \
+  -command="make run_api" \
   -exclude-dir=".git" \
   -color \
   -log-prefix=false
