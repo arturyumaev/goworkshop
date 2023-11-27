@@ -1,18 +1,19 @@
 COMMIT_HASH := $(shell git rev-parse --short HEAD)
 BRANCH_NAME := $(shell git rev-parse --abbrev-ref HEAD)
-USER_EMAIL  := $(shell git config user.email)
 
-LDFLAGS := -X 'main.commitHash=$(COMMIT_HASH)' \
-					 -X 'main.branchName=$(BRANCH_NAME)' \
-					 -X 'github.com/arturyumaev/goworkshop/internal/info.UserEmail=$(USER_EMAIL)'
+LDFLAGS := -X 'main.commitHash=$(COMMIT_HASH)' -X 'main.branchName=$(BRANCH_NAME)'
 
-all: build_api run_api
-
-build_api:
+api_build_local:
 	go build -ldflags="$(LDFLAGS)" -o ./bin/api ./cmd/api/main.go
 
-run_api:
+api_run_local: api_build_local
 	./bin/api
+
+api_build:
+	docker build -t api -f deployments/production/Dockerfile.api .
+
+api_run: api_build
+	docker run api
 
 dev_up:
 	@docker compose \

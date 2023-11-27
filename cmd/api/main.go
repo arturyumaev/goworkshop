@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/arturyumaev/goworkshop/internal/info"
 )
 
 var (
@@ -13,9 +11,8 @@ var (
 
 func main() {
 	fmt.Printf(
-		"commitHash: %s\nbranchName: %s\nuserEmail: %s\n",
+		"commitHash: %s\nbranchName: %s\n",
 		commitHash,
 		branchName,
-		info.UserEmail,
 	)
 }

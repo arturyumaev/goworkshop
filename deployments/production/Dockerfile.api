@@ -1,0 +1,23 @@
+FROM golang:alpine AS builder
+
+RUN apk update && apk add --no-cache git
+
+WORKDIR /app
+
+COPY go.mod ./
+RUN go mod download
+
+COPY . .
+
+RUN go build \
+  -ldflags="-X 'main.commitHash=$(git rev-parse --short HEAD)' -X 'main.branchName=$(git rev-parse --abbrev-ref HEAD)'" \
+  -o /go/bin/api \
+  ./cmd/api/main.go
+
+FROM scratch
+
+COPY --from=builder /go/bin/api /go/bin/api
+
+EXPOSE ${APPLICATION_PORT}
+
+ENTRYPOINT ["/go/bin/api"]
